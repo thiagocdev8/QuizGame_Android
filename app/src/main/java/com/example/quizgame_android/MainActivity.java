@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-
+        okButton = (Button) findViewById(R.id.buttonOk);
+        okButton.setEnabled(false);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
