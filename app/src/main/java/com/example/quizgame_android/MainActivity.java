@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -101,27 +102,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateQuestions(View view){
-
-
-        optionA.setText(optionA_answers[questionNumber]);
-        optionB.setText(optionB_answers[questionNumber]);
-        optionC.setText(optionC_answers[questionNumber]);
-        question.setText(questions[questionNumber]);
-        questionNumber++;
+        if(questionNumber == questions.length){
+            resultCheck();
+        }
+        else {
+            optionA.setText(optionA_answers[questionNumber]);
+            optionB.setText(optionB_answers[questionNumber]);
+            optionC.setText(optionC_answers[questionNumber]);
+            question.setText(questions[questionNumber]);
+            questionNumber++;
+            okButton.setEnabled(false);
+        }
     }
 
     public void resultCheck(){
-        int listCounter = 0;
-        for(int number : listAnswers){
-            System.out.println(number);
-            if(number==listAnswers[listCounter]){
-                answeredCorrectly++;
-                System.out.println("Correct Answer!");
-            }
-            else {
-                System.out.println("Wrong Answer!");
-            }
-            listCounter++;
+        if(questionNumber == questions.length){
+            showResults();
         }
+        else{
+            int listCounter = 0;
+            for(int number : listAnswers){
+                System.out.println(number);
+                if(number==listAnswers[listCounter]){
+                    answeredCorrectly++;
+                    System.out.println("Correct Answer!");
+                }
+                else {
+                    System.out.println("Wrong Answer!");
+                }
+                listCounter++;
+            }
+        }
+
+    }
+
+    public void showResults(){
+        Toast.makeText(this,"Você acertou: " + answeredCorrectly, Toast.LENGTH_SHORT).show();
     }
 }
