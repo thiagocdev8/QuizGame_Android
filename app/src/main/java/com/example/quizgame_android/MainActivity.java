@@ -64,11 +64,17 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        okButton = (Button) findViewById(R.id.buttonOk);
+        okButton = findViewById(R.id.buttonOk);
         okButton.setEnabled(false);
 
-        question = (TextView) findViewById(R.id.questionText);
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        question = findViewById(R.id.questionText);
+
+        optionA = findViewById(R.id.radioButton1);
+        optionB = findViewById(R.id.radioButton2);
+        optionC = findViewById(R.id.radioButton3);
+
+
+        radioGroup = findViewById(R.id.radioGroup);
 
         updateQuestions(okButton);
 
@@ -92,8 +98,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateQuestions(View view){
-        questionNumber++;
-        question.setText(questions[questionNumber]);
 
+
+        optionA.setText(optionA_answers[questionNumber]);
+        optionB.setText(optionB_answers[questionNumber]);
+        optionC.setText(optionC_answers[questionNumber]);
+        question.setText(questions[questionNumber]);
+        questionNumber++;
     }
 }
