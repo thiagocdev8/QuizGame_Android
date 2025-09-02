@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             "Response C - Quinta Qergunta."};
 
     int[] listAnswers = new int[questions.length];
-    int correctAnswers[] = {1,2,3,4,5};
+    int[] correctAnswers = {1,2,3,4,5};
     int answeredCorrectly = 0;
     int questionNumber = 0;
 
@@ -83,12 +83,15 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(@NonNull RadioGroup group, int checkedId) {
                 if (checkedId == R.id.radioButton1){
                     Log.d("s", "Option #1");
+                    listAnswers[questionNumber-1] = 1;
                 }
                 else if (checkedId == R.id.radioButton2){
                     Log.d("s", "Option #2");
+                    listAnswers[questionNumber-1]= 2;
                 }
                 else if (checkedId == R.id.radioButton3){
                     Log.d("s", "Option #3");
+                    listAnswers[questionNumber-1]= 3;
                 }
                 okButton.setEnabled(true);
             }
@@ -105,5 +108,20 @@ public class MainActivity extends AppCompatActivity {
         optionC.setText(optionC_answers[questionNumber]);
         question.setText(questions[questionNumber]);
         questionNumber++;
+    }
+
+    public void resultCheck(){
+        int listCounter = 0;
+        for(int number : listAnswers){
+            System.out.println(number);
+            if(number==listAnswers[listCounter]){
+                answeredCorrectly++;
+                System.out.println("Correct Answer!");
+            }
+            else {
+                System.out.println("Wrong Answer!");
+            }
+            listCounter++;
+        }
     }
 }
