@@ -2,6 +2,7 @@ package com.example.quizgame_android;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -16,32 +17,32 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RadioGroup radioGroup;
-    private TextView question;
+    public RadioGroup radioGroup;
+    public TextView question;
 
-    private RadioButton optionA;
-    private RadioButton optionB;
-    private RadioButton optionC;
+    public RadioButton optionA;
+    public RadioButton optionB;
+    public RadioButton optionC;
 
-    private Button okButton;
+    public Button okButton;
 
-    String questions[] = {"First Question.",
+    String[] questions = {"First Question.",
             "Second Question.",
             "Third Question.",
             "Fourth Question.",
             "Quinta Qergunta."};
 
-    String optionA_answers[] = {"Response A - First Question.",
+    String[] optionA_answers = {"Response A - First Question.",
             "Response A - Second Question.",
             "Response A - Third Question.",
             "Response A - Fourth Question.",
             "Response A - Quinta Qergunta."};
-    String optionB_answers[] = {"Response B - First Question.",
+    String[] optionB_answers = {"Response B - First Question.",
             "Response B - Second Question.",
             "Response B - Third Question.",
             "Response B - Fourth Question.",
             "Response B - Quinta Qergunta."};
-    String optionC_answers[] = {"Response C - First Question.",
+    String[] optionC_answers = {"Response C - First Question.",
             "Response C - Second Question.",
             "Response C - Third Question.",
             "Response C - Fourth Question.",
@@ -65,7 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
         okButton = (Button) findViewById(R.id.buttonOk);
         okButton.setEnabled(false);
+
+        question = (TextView) findViewById(R.id.questionText);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+
+        updateQuestions(okButton);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -83,6 +88,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void updateQuestions(View view){
+        questionNumber++;
+        question.setText(questions[questionNumber]);
 
     }
 }
