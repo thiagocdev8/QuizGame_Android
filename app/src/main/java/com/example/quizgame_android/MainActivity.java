@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             "b) Oak",
             "b) Oracle",
             "b) \"Write Once, Run Anywhere\""};
-    String[] optionC_answers = {"b) Dennis Ritchie",
+    String[] optionC_answers = {"c) Ryan Smith",
             "c) 2000",
             "c) Green",
             "c) Microsoft",
@@ -148,14 +148,14 @@ public class MainActivity extends AppCompatActivity {
         int score = answeredCorrectly / 2;
         String stars = new String(new char[score]).replace("\0", "⭐");
 
-        if(answeredCorrectly >= 4){
+        if(score >= 4){
             alertResult.setTitle("\uD83C\uDF89 Quiz Over! \uD83C\uDF89");
             alertResult.setMessage("Your Score: " + stars + " (" + score + ")");
         }
-        else if ( answeredCorrectly < 3){
+        else if ( score < 3){
             alertResult.setTitle("\uD83D\uDE22 Quiz Over \uD83D\uDE22");
             alertResult.setMessage("Your Score: " + stars + " (" + score + ")");
-        }else if ( answeredCorrectly == 3){
+        }else {
             alertResult.setTitle("\uD83D\uDE10 Quiz Over \uD83D\uDE10");
             alertResult.setMessage("Your Score: " + stars + " (" + score + ")");
         }
