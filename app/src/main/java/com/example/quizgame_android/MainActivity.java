@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -27,30 +28,30 @@ public class MainActivity extends AppCompatActivity {
 
     public Button okButton;
 
-    String[] questions = {"First Question.",
-            "Second Question.",
-            "Third Question.",
-            "Fourth Question.",
-            "Quinta Qergunta."};
+    String[] questions = {"Q1: Who is known as the father of Java programming language?",
+            "Q2: In which year was the first version of Java officially released?",
+            "Q3: Before being called \"Java\", what was the original name of the language?",
+            "Q4: Which company originally developed Java?",
+            "Q5: What was one of Java’s main mottos during its early years?"};
 
-    String[] optionA_answers = {"Response A - First Question.",
-            "Response A - Second Question.",
-            "Response A - Third Question.",
-            "Response A - Fourth Question.",
-            "Response A - Quinta Qergunta."};
-    String[] optionB_answers = {"Response B - First Question.",
-            "Response B - Second Question.",
-            "Response B - Third Question.",
-            "Response B - Fourth Question.",
-            "Response B - Quinta Qergunta."};
-    String[] optionC_answers = {"Response C - First Question.",
-            "Response C - Second Question.",
-            "Response C - Third Question.",
-            "Response C - Fourth Question.",
-            "Response C - Quinta Qergunta."};
+    String[] optionA_answers = {"a) James Gosling",
+            "a) 1991",
+            "a) CoffeeCode",
+            "a) Sun Microsystems",
+            "a) \"Fast and Flexible\""};
+    String[] optionB_answers = {"b) Dennis Ritchie",
+            "b) 1995 ",
+            "b) Oak",
+            "b) Oracle",
+            "b) \"Write Once, Run Anywhere\""};
+    String[] optionC_answers = {"b) Dennis Ritchie",
+            "c) 2000",
+            "c) Green",
+            "c) Microsoft",
+            "c) \"Secure and Simple\""};
 
     int[] listAnswers = new int[questions.length];
-    int[] correctAnswers = {1,2,3,2,1};
+    int[] correctAnswers = {1,2,2,1,2};
     int answeredCorrectly = 0;
     int questionNumber = 0;
 
@@ -143,6 +144,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showResults(){
-        Toast.makeText(this,"Você acertou: " + answeredCorrectly / 2, Toast.LENGTH_SHORT).show();
+        AlertDialog alertResult = new AlertDialog.Builder(this).create();
+        int score = answeredCorrectly / 2;
+        String stars = new String(new char[score]).replace("\0", "⭐");
+
+        if(answeredCorrectly >= 4){
+            alertResult.setTitle("\uD83C\uDF89 Quiz Over! \uD83C\uDF89");
+            alertResult.setMessage("Your Score: " + stars + " (" + score + ")");
+        }
+        else if ( answeredCorrectly < 3){
+            alertResult.setTitle("\uD83D\uDE22 Quiz Over \uD83D\uDE22");
+            alertResult.setMessage("Your Score: " + stars + " (" + score + ")");
+        }else if ( answeredCorrectly == 3){
+            alertResult.setTitle("\uD83D\uDE10 Quiz Over \uD83D\uDE10");
+            alertResult.setMessage("Your Score: " + stars + " (" + score + ")");
+        }
+
+        alertResult.show();
+
     }
 }
