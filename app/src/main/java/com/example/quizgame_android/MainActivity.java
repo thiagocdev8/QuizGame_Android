@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             "Response C - Quinta Qergunta."};
 
     int[] listAnswers = new int[questions.length];
-    int[] correctAnswers = {1,2,3,4,5};
+    int[] correctAnswers = {1,2,3,2,1};
     int answeredCorrectly = 0;
     int questionNumber = 0;
 
@@ -106,13 +106,16 @@ public class MainActivity extends AppCompatActivity {
             resultCheck();
         }
         else {
+            resultCheck();
             optionA.setText(optionA_answers[questionNumber]);
             optionB.setText(optionB_answers[questionNumber]);
             optionC.setText(optionC_answers[questionNumber]);
             question.setText(questions[questionNumber]);
             questionNumber++;
             okButton.setEnabled(false);
+            radioGroup.clearCheck();
         }
+
     }
 
     public void resultCheck(){
@@ -122,12 +125,15 @@ public class MainActivity extends AppCompatActivity {
         else{
             int listCounter = 0;
             for(int number : listAnswers){
+
                 System.out.println(number);
-                if(number==listAnswers[listCounter]){
+                if(number==correctAnswers[listCounter]){
+
                     answeredCorrectly++;
                     System.out.println("Correct Answer!");
                 }
                 else {
+
                     System.out.println("Wrong Answer!");
                 }
                 listCounter++;
@@ -137,6 +143,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showResults(){
-        Toast.makeText(this,"Você acertou: " + answeredCorrectly, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Você acertou: " + answeredCorrectly / 2, Toast.LENGTH_SHORT).show();
     }
 }
